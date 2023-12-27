@@ -1,0 +1,24 @@
+$breakpoint-xsmall: 320px;
+$breakpoint-small: 576px;
+$breakpoint-medium: 768px;
+$breakpoint-mobile-max1k: 62.5rem;
+$breakpoint-mobile-min1k: 62.5625rem;
+$breakpoint-large: 1024px;
+$breakpoint-extra-large: 1300px;
+
+// for DEMO and fututre improvements purposes
+@mixin min-width($breakpoint) {
+	@if ($breakpoint == mobile-min1k) {
+		@media (min-width: $breakpoint-mobile-min1k) {
+			@content;
+		}
+	}
+}
+
+@mixin max-width($breakpoint) {
+	@if ($breakpoint == mobile-max1k) {
+		@media (max-width: $breakpoint-mobile-max1k) {
+			@content;
+		}
+	}
+}

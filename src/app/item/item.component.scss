@@ -1,6 +1,102 @@
+@use "../../media" as m;
+
 :host {
 	display: contents;
+
+	&.inactive {
+		--font-color: var(--gray-200);
+	}
+
+	&:nth-child(2n) {
+		& > div {
+			background-color: var(--gray-100);
+		}
+	}
+
+	& > div {
+		padding: 1rem 1.5rem;
+		line-height: var(--cell-line-height);
+		background: var(--bg-white);
+		color: var(--font-color);
+		-webkit-filter: var(--filter);
+		filter: var(--filter);
+
+		img {
+			display: block;
+			margin: 0 auto;
+			border-radius: 0.125rem;
+		}
+
+		&:first-child {
+			border-radius: 0.125rem 0 0 0.125rem;
+		}
+
+		&:last-child {
+			color: var(--delete);
+			border-radius: 0 0.125rem 0.125rem 0;
+		}
+	}
+
+	@include m.max-width(mobile-max1k) {
+		display: grid;
+		grid-template-areas: "check image title title" "check image state actions" "check image description description";
+		grid-template-columns: 1fr 3fr 6fr 2fr;
+		grid-auto-rows: min-content;
+		gap: 0.3125rem 0.625rem;
+		align-items: center;
+		border-top: 0.0625rem solid var(--gray-100);
+		padding: 0.625rem 0;
+
+		&:first-child {
+			border-bottom: none;
+		}
+
+		&:nth-child(2n) {
+			& > div {
+				background: none;
+			}
+		}
+
+		& > div {
+			padding: 0;
+			font-size: 0.75rem;
+			line-height: var(--cell-line-height);
+
+			&:first-child {
+				grid-area: check;
+			}
+			&:nth-child(2) {
+				grid-area: image;
+			}
+			&:nth-child(3) {
+				grid-area: title;
+				font-size: 0.75rem;
+				font-weight: bolder;
+			}
+			&:nth-child(4) {
+				grid-area: state;
+			}
+			&:nth-child(5) {
+				grid-area: description;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			&:last-child {
+				grid-area: actions;
+				text-align: right;
+			}
+		}
+	}
 }
+
+// :host:host-context(.grid) ~ .empty-item {
+// 	display: none;
+// }
+
+// :host + .empty-item {
+// 	display: none;
+// }
 
 img {
 	max-width: 5rem;

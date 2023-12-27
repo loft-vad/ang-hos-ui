@@ -1,9 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
+@use "media" as m;
+
+:root {
+	--gray-100: #f0f0f0;
+	--gray-200: #dfdfdf;
+	--green-main: #50c878;
+	--delete: #880808;
+	--main-text: #444;
+	--bg-white: #fff;
+	--filter: invert(0);
+	--font-color: --main-text;
+	--max-lines: 10;
+	--cell-line-height: 1.125rem;
+}
+
+[data-theme="dark"] {
+	--gray-100: #474747;
+	--gray-200: #4f4f4f;
+	--main-text: #999;
+	--bg-white: #0f0f0f;
+	--green-main: #005b41;
+}
+
+@font-face {
+	font-family: "Noto Sans";
+	src: url("assets/fonts/NotoSans/NotoSans-Regular.ttf");
+	//other fonts inc. woff2, woff, eot, etc.
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Noto Sans";
+	src: url("assets/fonts/NotoSans/NotoSans-Bold.ttf");
+	//other fonts inc. woff2, woff, eot, etc.
+	font-weight: bold;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+app-root {
+	display: block;
+}
+
+html,
+body {
+	height: 100%;
+}
 
 html {
 	font-size: 16px;
 }
 
 body {
-	font-family: sans-serif;
+	color: var(--main-text);
+	font-family: "Noto Sans", "OpenSans", "Roboto", "Montserrat", sans-serif;
+	background: var(--bg-white);
+	// font-family: "Roboto", sans-serif;
+}
+
+h1 {
+	font-size: 2rem;
+	line-height: 2.25rem;
+}
+
+button {
+	border: 0.0625rem solid var(--bg-white);
+	background: var(--green-main);
+	padding: 0.625rem 1.25rem;
+	box-shadow: 0 0 0.5rem var(--green-main);
+	border-radius: 0.3125rem;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.625rem;
+	color: var(--bg-white);
+	cursor: pointer;
+
+	&:disabled {
+		border-color: var(--gray-200);
+		color: var(--gray-200);
+	}
+}
+
+section {
+	max-width: 61.25rem;
 }

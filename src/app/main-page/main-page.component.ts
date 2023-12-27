@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostListener,
+	OnInit,
+	QueryList,
+	ViewChildren,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LoremIpsum } from 'lorem-ipsum';
 import { Item } from '../models/item.model';
@@ -11,7 +18,13 @@ import { Icons } from '../consts/icons.enum';
 	styleUrls: ['./main-page.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
+	private hour = new Date().getHours();
+	private isDarkTheme =
+		window.matchMedia('(prefers-color-scheme: dark)').matches ||
+		this.hour < 8 ||
+		this.hour >= 19;
+
 	public items: Item[] = [];
 
 	public selected = new Set<symbol>();
@@ -28,6 +41,12 @@ export class MainPageComponent {
 			min: 1,
 		},
 	});
+
+	ngOnInit(): void {
+		// this.addItem();
+		if (this.isDarkTheme)
+			document.documentElement.dataset['theme'] = 'dark';
+	}
 
 	public addItem() {
 		const item: Item = {
